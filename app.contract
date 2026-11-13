@@ -1,0 +1,49 @@
+// Nova native: a small sign-up form built only from Nova components
+// (@nova-design-system/native, in packages/nova-native). Colours come from
+// app.tamber, which tools/resolve-tokens.ts generates from Nova's spark.css.
+use NvButton, NvFieldtext from "@nova-design-system/native"
+
+routes nav
+  home "/"
+
+component NovaNativePoc
+  state name = ""
+  state email = ""
+  state submitted = false
+  state sent = 0
+  derive nameMissing = name.trim() == ""
+  derive emailInvalid = not email.includes("@")
+  derive valid = not nameMissing and not emailInvalid
+
+  action editName(value: string)
+    name = value
+  action editEmail(value: string)
+    email = value
+  action submit
+    submitted = true
+    if valid
+      sent = sent + 1
+      name = ""
+      email = ""
+      submitted = false
+  action reset
+    name = ""
+    email = ""
+    submitted = false
+
+  view
+    main testId="root" navigationKey=`${top(nav).id}` width="100%" height="100%"
+      for e in stack(nav) key=e.id
+        column navigationKey=`${e.id}` navigationScroll="content" position="absolute" inset=0 display="flex" flex-direction="column"
+          header display="flex" align-items="center"
+            text "Nova native" role="heading" aria-level=1 flex=1
+          scroll id="content" flex=1 min-height=0 padding=24
+            column gap=20 max-width="26.25rem"
+              NvFieldtext(label="Full name", description="As shown on your badge.", errorDescription="Enter your name.", placeholder="Jane Doe", value=name, error=(submitted and nameMissing), required=true, readonly=false, disabled=false, tid="name", input=editName)
+              NvFieldtext(label="Email", description="We only use it to reply.", errorDescription="Enter a valid email address.", placeholder="jane@elia.be", value=email, error=(submitted and emailInvalid), required=true, readonly=false, disabled=false, tid="email", input=editEmail)
+              NvFieldtext(label="Company", description="Filled from your account.", errorDescription="", placeholder="", value="Elia Group", error=false, required=false, readonly=true, disabled=false, tid="company", input=editName)
+              row gap=12
+                NvButton(label="Send", emphasis="high", size="md", danger=false, disabled=false, loading=false, fluid=false, tid="send", press=submit)
+                NvButton(label="Reset", emphasis="medium", size="md", danger=false, disabled=false, loading=false, fluid=false, tid="reset", press=reset)
+                NvButton(label="Delete", emphasis="high", size="sm", danger=true, disabled=false, loading=false, fluid=false, tid="delete", press=reset)
+              text `${sent} sent` testId="sent"

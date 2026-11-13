@@ -1,0 +1,19 @@
+{
+  "lockfileVersion": 2,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "nova-exact-poc",
+      "dependencies": {
+        "@nova-design-system/native": "workspace:*",
+      },
+    },
+    "packages/nova-native": {
+      "name": "@nova-design-system/native",
+      "version": "0.0.0-poc",
+    },
+  },
+  "packages": {
+    "@nova-design-system/native": ["@nova-design-system/native@workspace:packages/nova-native"],
+  }
+}

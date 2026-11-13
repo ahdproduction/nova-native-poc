@@ -1,0 +1,34 @@
+// Runs unchanged on every host: bun exact.mjs test web (or macos, ios).
+
+test "the form starts empty with Nova's labels"
+  expect text "name-label" == "Full name"
+  expect text "email-label" == "Email"
+  expect text "sent" == "0 sent"
+  expect tree has "name-description"
+  expect tree missing "name-error"
+
+test "sending an empty form shows the error descriptions"
+  tap "send"
+  expect tree has "name-error"
+  expect text "name-error" == "Enter your name."
+  expect text "email-error" == "Enter a valid email address."
+  expect tree missing "name-description"
+  expect text "sent" == "0 sent"
+
+test "a valid form is sent and cleared"
+  type "name" "Jane Doe"
+  type "email" "jane@elia.be"
+  tap "send"
+  expect text "sent" == "1 sent"
+  expect state name == ""
+  expect tree missing "name-error"
+
+test "reset clears the errors"
+  tap "send"
+  expect tree has "email-error"
+  tap "reset"
+  expect tree missing "email-error"
+
+test "the read-only field shows its description"
+  expect tree has "company"
+  expect text "company-description" == "Filled from your account."

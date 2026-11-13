@@ -1,0 +1,126 @@
+// @nova-design-system/native: Nova components written in Contract.
+// Ported from packages/native/src/components/nv-button and nv-fieldtext.
+// Colours are Nova's own token names (app.tamber is generated from spark.css);
+// lengths are the resolved values of Nova's size tokens (md and sm).
+
+// ---------------------------------------------------------------- nv-button
+
+style NvButtonHigh
+  background-color = "components-button-high-background"
+  border-color = "components-button-high-border"
+  color = "components-button-high-text"
+  :hover
+    background-color = "components-button-high-background-hover"
+    border-color = "components-button-high-border-hover"
+  :active
+    background-color = "components-button-high-background-active"
+  :focus-visible
+    box-shadow = "0 0 0 2px #ffffff, 0 0 0 4px #e75420"
+
+style NvButtonMedium
+  background-color = "components-button-medium-background"
+  border-color = "components-button-medium-border"
+  color = "components-button-medium-text"
+  :hover
+    background-color = "components-button-medium-background-hover"
+    border-color = "components-button-medium-border-hover"
+    color = "components-button-medium-text-hover"
+  :active
+    background-color = "components-button-medium-background-active"
+  :focus-visible
+    box-shadow = "0 0 0 2px #ffffff, 0 0 0 4px #e75420"
+
+style NvButtonDanger
+  background-color = "components-button-destructive-high-background"
+  border-color = "components-button-destructive-high-background"
+  color = "components-button-destructive-high-text"
+  :hover
+    background-color = "components-button-destructive-high-background-hover"
+    border-color = "components-button-destructive-high-background-hover"
+  :active
+    background-color = "components-button-destructive-high-background-hover"
+  :focus-visible
+    box-shadow = "0 0 0 2px #ffffff, 0 0 0 4px #e75420"
+
+component NvButton
+  props
+    label: string
+    emphasis: string
+    size: string
+    danger: bool
+    disabled: bool
+    loading: bool
+    fluid: bool
+    tid: string
+    press: action
+  derive small = size == "sm"
+  view
+    // A class names one style (or chooses between two), and :hover rows are
+    // literals, so each painted variant is its own branch with its own class.
+    if danger
+      button press=press disabled=(disabled or loading) testId=tid class=NvButtonDanger
+        display="flex" justify-content="center" align-items="center"
+        gap=(small ? 6 : 8) height=(small ? 32 : 40)
+        padding-top=(small ? 6 : 8) padding-bottom=(small ? 6 : 8)
+        padding-left=(small ? 12 : 14) padding-right=(small ? 12 : 14)
+        border-radius=(small ? 4 : 6) border-width=1 border-style="solid" box-sizing="border-box"
+        font-weight=500 font-size=(small ? "0.875rem" : "1rem") line-height=(small ? "1.25rem" : "1.5rem")
+        width=(fluid ? "100%" : "auto") opacity=(disabled ? 0.5 : 1)
+        text (loading ? "Loading…" : label)
+    else
+      if emphasis == "high"
+        button press=press disabled=(disabled or loading) testId=tid class=NvButtonHigh
+          display="flex" justify-content="center" align-items="center"
+          gap=(small ? 6 : 8) height=(small ? 32 : 40)
+          padding-top=(small ? 6 : 8) padding-bottom=(small ? 6 : 8)
+          padding-left=(small ? 12 : 14) padding-right=(small ? 12 : 14)
+          border-radius=(small ? 4 : 6) border-width=1 border-style="solid" box-sizing="border-box"
+          font-weight=500 font-size=(small ? "0.875rem" : "1rem") line-height=(small ? "1.25rem" : "1.5rem")
+          width=(fluid ? "100%" : "auto") opacity=(disabled ? 0.5 : 1)
+          text (loading ? "Loading…" : label)
+      else
+        button press=press disabled=(disabled or loading) testId=tid class=NvButtonMedium
+          display="flex" justify-content="center" align-items="center"
+          gap=(small ? 6 : 8) height=(small ? 32 : 40)
+          padding-top=(small ? 6 : 8) padding-bottom=(small ? 6 : 8)
+          padding-left=(small ? 12 : 14) padding-right=(small ? 12 : 14)
+          border-radius=(small ? 4 : 6) border-width=1 border-style="solid" box-sizing="border-box"
+          font-weight=500 font-size=(small ? "0.875rem" : "1rem") line-height=(small ? "1.25rem" : "1.5rem")
+          width=(fluid ? "100%" : "auto") opacity=(disabled ? 0.5 : 1)
+          text (loading ? "Loading…" : label)
+
+// ------------------------------------------------------------- nv-fieldtext
+
+component NvFieldtext
+  props
+    label: string
+    description: string
+    errorDescription: string
+    placeholder: string
+    value: string
+    error: bool
+    required: bool
+    readonly: bool
+    disabled: bool
+    tid: string
+    input: action
+  view
+    column gap=4 width="100%"
+      row gap=2
+        text label font-size="0.875rem" font-weight=500 color="components-form-text-label-default" testId=`${tid}-label`
+        if required
+          text "*" color="components-form-text-required" aria-hidden=true
+      input value=value input=input placeholder=placeholder aria-label=label
+        disabled=disabled readonly=readonly testId=tid
+        height=40 box-sizing="border-box" padding-left=12 padding-right=12 border-radius=6
+        border-width=1 border-style="solid"
+        border-color=(error ? "components-form-field-border-error" : (readonly ? "components-form-field-border-readonly" : "components-form-field-border-default"))
+        background-color=(disabled ? "components-form-field-background-disabled" : (readonly ? "components-form-field-background-readonly" : "components-form-field-background-default"))
+        color="components-form-field-content-text"
+        font-size="1rem"
+        ::placeholder
+          color="components-form-field-content-placeholder"
+      if description != "" and not error
+        text description font-size="0.875rem" color="components-form-text-description-default" testId=`${tid}-description`
+      if error and errorDescription != ""
+        text errorDescription font-size="0.875rem" color="components-form-text-description-error" role="alert" testId=`${tid}-error`

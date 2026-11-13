@@ -1,0 +1,12 @@
+{
+  "name": "nova-native-poc-embed",
+  "private": true,
+  "description": "Checks whether the Exact web build can live inside an existing React page.",
+  "scripts": {
+    "check": "bun build host.tsx --outdir out --target browser && bun check.ts"
+  },
+  "dependencies": {
+    "react": "19.1.5",
+    "react-dom": "19.1.5"
+  }
+}

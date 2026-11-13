@@ -1,0 +1,64 @@
+// Generated from @nova-design-system/nova-base dist/css/spark.css by tools/resolve-tokens.ts.
+// Do not edit by hand.
+tamber nova
+
+theme
+  color-focus-brand = #e75420  scheme=fixed
+  components-button-destructive-high-background = light-dark(#da2424, #ff3d3d)
+  components-button-destructive-high-background-hover = light-dark(#bb1919, #ff6161)
+  components-button-destructive-high-icon = light-dark(#ffffff, #000000)
+  components-button-destructive-high-icon-hover = light-dark(#ffffff, #000000)
+  components-button-destructive-high-text = light-dark(#ffffff, #000000)
+  components-button-destructive-high-text-hover = light-dark(#ffffff, #000000)
+  components-button-high-background = #e75420  scheme=fixed
+  components-button-high-background-active = light-dark(#bf451a, #eb7247)
+  components-button-high-background-hover = light-dark(#bf451a, #eb7247)
+  components-button-high-border = rgba(255, 255, 255, 0)  scheme=fixed
+  components-button-high-border-active = light-dark(#bf451a, rgba(255, 255, 255, 0))
+  components-button-high-border-hover = light-dark(#bf451a, rgba(255, 255, 255, 0))
+  components-button-high-icon = light-dark(#ffffff, #000000)
+  components-button-high-icon-active = light-dark(#ffffff, #000000)
+  components-button-high-icon-hover = light-dark(#ffffff, #000000)
+  components-button-high-text = light-dark(#ffffff, #000000)
+  components-button-high-text-active = light-dark(#ffffff, #000000)
+  components-button-high-text-hover = light-dark(#ffffff, #000000)
+  components-button-medium-background = light-dark(#ffffff, #0e0e0e)
+  components-button-medium-background-active = light-dark(#fceae3, #45190a)
+  components-button-medium-background-hover = light-dark(#fceae3, #45190a)
+  components-button-medium-border = #e75420  scheme=fixed
+  components-button-medium-border-active = light-dark(#bf451a, #eb7247)
+  components-button-medium-border-hover = light-dark(#bf451a, #eb7247)
+  components-button-medium-icon = #e75420  scheme=fixed
+  components-button-medium-icon-active = light-dark(#bf451a, #eb7247)
+  components-button-medium-icon-hover = light-dark(#bf451a, #eb7247)
+  components-button-medium-text = #e75420  scheme=fixed
+  components-button-medium-text-active = light-dark(#bf451a, #eb7247)
+  components-button-medium-text-hover = light-dark(#bf451a, #eb7247)
+  components-form-field-background-checked = #e75420  scheme=fixed
+  components-form-field-background-default = light-dark(#ffffff, #0e0e0e)
+  components-form-field-background-disabled = light-dark(#f6f6f6, #1d1d1d)
+  components-form-field-background-error = light-dark(#bb1919, #ff6161)
+  components-form-field-background-focus = light-dark(#ffffff, #0e0e0e)
+  components-form-field-background-hover = light-dark(#fbfbfb, #161616)
+  components-form-field-background-readonly = light-dark(#fbfbfb, #161616)
+  components-form-field-background-success = light-dark(#008207, #45d24d)
+  components-form-field-border-default = light-dark(#bfbfbf, #6d6d6d)
+  components-form-field-border-disabled = light-dark(#bfbfbf, #6d6d6d)
+  components-form-field-border-error = light-dark(#bb1919, #ff6161)
+  components-form-field-border-focus = #e75420  scheme=fixed
+  components-form-field-border-hover = #919191  scheme=fixed
+  components-form-field-border-readonly = light-dark(#e3e3e3, #484848)
+  components-form-field-border-success = light-dark(#008207, #45d24d)
+  components-form-field-content-placeholder = light-dark(#6d6d6d, #808080)
+  components-form-field-content-text = light-dark(#1d1d1d, #f6f6f6)
+  components-form-field-icon-default = light-dark(#6d6d6d, #808080)
+  components-form-field-icon-disabled = light-dark(#bfbfbf, #6d6d6d)
+  components-form-field-icon-error = light-dark(#bb1919, #ff6161)
+  components-form-field-icon-success = light-dark(#008207, #45d24d)
+  components-form-text-description-default = light-dark(#6d6d6d, #808080)
+  components-form-text-description-error = light-dark(#bb1919, #ff6161)
+  components-form-text-info-icon = light-dark(#6d6d6d, #808080)
+  components-form-text-label-default = light-dark(#1d1d1d, #f6f6f6)
+  components-form-text-label-disabled = light-dark(#414141, #bfbfbf)
+  components-form-text-required = light-dark(#bb1919, #ff6161)
+  AccentColor = color-focus-brand
